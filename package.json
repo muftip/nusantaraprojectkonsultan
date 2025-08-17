@@ -1,5 +1,5 @@
 {
-  "name": "portfolioTemplate",
+  "name": "portfolio-template",
   "version": "2.0.0",
   "private": true,
   "dependencies": {
@@ -10,7 +10,6 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^13.1.9",
-    "ajv": "^8.11.0",
     "classnames": "^2.2.6",
     "moment": "^2.29.4",
     "node-forge": ">=1.3.0",

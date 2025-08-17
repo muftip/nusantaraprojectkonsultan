@@ -37,3 +37,12 @@ img {
 ul {
     list-style-type: none;
 }
+.emailLink {
+    text-decoration: none;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      text-decoration: underline;
+      opacity: 0.8;
+    }
+  }

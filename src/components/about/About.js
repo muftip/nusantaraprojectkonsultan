@@ -1,60 +1,55 @@
 import React from 'react';
-import Style from './About.module.scss';
-import Terminal from "./Terminal";
-import {Box} from "@mui/material";
-import {info} from "../../info/Info";
+import { Box, Typography, useTheme } from "@mui/material";
 
+export default function About({ innerRef }) {
+    const theme = useTheme(); // akses tema MUI
+    const isDark = theme.palette.mode === 'dark';
 
-export default function About({innerRef}) {
-    const firstName = info.firstName.toLowerCase()
-
-    function aboutMeText() {
-        return <>
-            <p><span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cat
-                about{firstName} </p>
-            <p><span style={{color: info.baseColor}}>about{firstName} <span
-                className={Style.green}>(main)</span> $ </span>
-                {info.bio}
-            </p>
-        </>;
-    }
-
-    function skillsText() {
-        return <>
-            <p><span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cd skills/tools
-            </p>
-            <p><span style={{color: info.baseColor}}>skills/tools <span
-                className={Style.green}>(main)</span> $</span> ls</p>
-            <p style={{color: info.baseColor}}> Proficient With</p>
-            <ul className={Style.skills}>
-                {info.skills.proficientWith.map((proficiency, index) => <li key={index}>{proficiency}</li>)}
-            </ul>
-            <p style={{color: info.baseColor}}> Exposed To</p>
-            <ul className={Style.skills}>
-                {info.skills.exposedTo.map((skill, index) => <li key={index}>{skill}</li>)}
-            </ul>
-        </>;
-    }
-
-    function miscText() {
-        return <>
-            <p><span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cd
-                hobbies/interests</p>
-            <p><span style={{color: info.baseColor}}>hobbies/interests <span
-                className={Style.green}>(main)</span> $</span> ls</p>
-            <ul>
-                {info.hobbies.map((hobby, index) => (
-                    <li key={index}><Box component={'span'} mr={'1rem'}>{hobby.emoji}</Box>{hobby.label}</li>
-                ))}
-            </ul>
-        </>;
-    }
+    const boxStyle = {
+        border: `1px solid ${isDark ? '#555' : '#ccc'}`,
+        borderRadius: '12px',
+        padding: '2rem',
+        marginBottom: '2rem',
+        boxShadow: isDark ? '0 4px 12px rgba(0,0,0,0.6)' : '0 4px 12px rgba(0,0,0,0.1)',
+        backgroundColor: isDark ? '#1e1e1e' : '#f9f9f9',
+        width: '100%',
+        maxWidth: '800px',
+        color: isDark ? '#f0f0f0' : '#111'
+    };
 
     return (
-        <Box ref={innerRef} display={'flex'} flexDirection={'column'} alignItems={'center'} mt={'3rem'} id={'about'}>
-            <Terminal text={aboutMeText()}/>
-            <Terminal text={skillsText()}/>
-            <Terminal text={miscText()}/>
+        <Box 
+            ref={innerRef} 
+            display={'flex'} 
+            flexDirection={'column'} 
+            alignItems={'center'} 
+            mt={'3rem'} 
+            id={'about'}
+        >
+            {/* Visi */}
+            <Box sx={boxStyle}>
+                <Typography variant="h5" gutterBottom sx={{ fontWeight: 600 }}>
+                    Visi Usaha Kolektif
+                </Typography>
+                <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
+                    Menjadi unit jasa profesional berbasis keterampilan kolektif yang berperan aktif dalam memperkuat gerakan koperasi rakyat yang mandiri, adil, dan berkelanjutan.
+                </Typography>
+            </Box>
+
+            {/* Misi */}
+            <Box sx={boxStyle}>
+                <Typography variant="h5" gutterBottom sx={{ fontWeight: 600 }}>
+                    Misi Usaha Kolektif
+                </Typography>
+               <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
+                    Menghimpun dan memberdayakan individu yang memiliki keahlian di berbagai bidang jasa
+konsultasi.
+Menyediakan layanan konsultasi, pelatihan, dan pendampingan yang relevan, berkualitas,
+dan terjangkau bagi koperasi dan komunitas.
+Membangun ekosistem kerja kolektif yang transparan, partisipatif, dan berbasis nilai
+solidaritas.
+                </Typography>
+            </Box>
         </Box>
-    )
+    );
 }
